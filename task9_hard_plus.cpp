@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <unordered_set>
 
 using namespace std;
 
@@ -21,6 +22,22 @@ vector<vector<int>> bad_algorithm(int arr[], int n, int delta) {
     return res;
 }
 
+vector<vector<int>> hashset_algo(int arr[], int n, int delta) {
+    vector<vector<int>> res;
+    unordered_set<int> num_set;
+    for (int i = 0; i < n; i++) {
+        num_set.insert(arr[i]);
+    }
+    for (int i = 0; i < n; i++) {
+        if (num_set.count(arr[i] - delta)) {
+            res.push_back({arr[i], arr[i] - delta});
+        } else if (num_set.count(arr[i] + delta)) {
+            res.push_back({arr[i], arr[i] + delta});
+        }
+    }
+    return res;
+}
+
 int main() {
     // get data
     int n, delta; cin >> n >> delta;
@@ -30,10 +47,11 @@ int main() {
     }
     
     // algorithm
-    vector<vector<int>> res = bad_algorithm(arr, n, delta);
+    // vector<vector<int>> res = bad_algorithm(arr, n, delta);
+    vector<vector<int>> res = hashset_algo(arr, n, delta);
     for (int i = 0; i < res.size(); i++) {
         cout << res[i][0] << ' ' << res[i][1] << '\n';
     }
-  
+    
     return 0;
 }
