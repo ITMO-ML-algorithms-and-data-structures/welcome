@@ -2,7 +2,7 @@
 #include <vector>
 #include <unordered_map>
 
-// Функция для проверки, является ли число простым
+// функция для проверки на простоту числа
 bool isPrime(int n) {
     if (n <= 1) return false;
     for (int i = 2; i * i <= n; ++i) {
@@ -12,7 +12,7 @@ bool isPrime(int n) {
 }
 
 int main() {
-    // количество элементов и сами элементы массива
+    // кол-во элементов и сами элементы
     int n;
     std::cin >> n;
 
@@ -21,7 +21,7 @@ int main() {
         std::cin >> numbers[i];
     }
 
-    // Используем unordered_map для подсчета количества вхождений чисел
+    //подсчет вхождений каждого числа
     std::unordered_map<int, int> count;
 
     for (int num : numbers) {
@@ -30,7 +30,7 @@ int main() {
         }
     }
 
-    // Выводим простые числа, которые встречаются четное количество раз
+    // выводим простые, которые встречаются четного кол-во раз
     for (const auto& pair : count) {
         if (pair.second % 2 == 0) {
             std::cout << pair.first << " ";
